@@ -7,16 +7,57 @@ declare global {
   var __MONGOD__: MongoMemoryServer | undefined
 }
 
-// Function to generate a temporary directory path for Redis
-// Removed getTmpDir as it's no longer needed
+const normalizeBaseMongoUri = (uri: string): string => {
+  const withoutQuery = uri.trim().split('?')[0]
+  if (withoutQuery.endsWith('/')) return withoutQuery
+
+  const schemeSeparatorIndex = withoutQuery.indexOf('://')
+  if (schemeSeparatorIndex === -1) return withoutQuery + '/'
+
+  const hostStart = schemeSeparatorIndex + 3
+  const lastSlashIndex = withoutQuery.lastIndexOf('/')
+
+  // URI has no path component, append trailing slash as base URI.
+  if (lastSlashIndex < hostStart) return withoutQuery + '/'
+
+  // URI has a db path component (e.g. /5e-database), strip to host part.
+  return withoutQuery.slice(0, lastSlashIndex + 1)
+}
+
+const resolveMongoBaseUri = (): string => {
+  const preferredUri =
+    process.env.TEST_MONGODB_URI_BASE ??
+    process.env.TEST_MONGODB_URI ??
+    process.env.MONGODB_URI ??
+    'mongodb://127.0.0.1:27017/'
+
+  return normalizeBaseMongoUri(preferredUri)
+}
 
 export async function setup(): Promise<() => Promise<void>> {
   console.log('\n[Global Setup - Unit Tests] Starting test servers...')
 
-  // --- MongoDB Setup ---
+  if (process.env.USE_MONGODB_MEMORY_SERVER !== 'true') {
+    const localMongoBaseUri = resolveMongoBaseUri()
+    process.env.TEST_MONGODB_URI_BASE = localMongoBaseUri
+    console.log(
+      `[Global Setup - Unit Tests] Using MongoDB base URI from environment/local default: ${localMongoBaseUri}`
+    )
+
+    return async () => {
+      console.log('\n[Global Teardown - Unit Tests] External MongoDB instance in use, nothing to stop.')
+    }
+  }
+
+  // --- MongoMemoryServer fallback ---
   try {
-    console.log('[Global Setup - Unit Tests] Starting MongoMemoryServer...')
-    const mongod = await MongoMemoryServer.create()
+    console.log('[Global Setup - Unit Tests] Starting MongoMemoryServer fallback...')
+    const mongod = await MongoMemoryServer.create({
+      instance: {
+        ip: '127.0.0.1',
+        port: Number(process.env.TEST_MONGODB_MEMORY_PORT ?? 27018)
+      }
+    })
     const baseMongoUri = mongod.getUri().split('?')[0]
     const serverUri = baseMongoUri.endsWith('/') ? baseMongoUri : baseMongoUri + '/'
 
