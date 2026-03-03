@@ -4,7 +4,7 @@
 
 目标：让契约在集成层可感知，不仅是模型/控制器层。
 
-状态：进行中（已新增首批 `integration/contract` 用例）。
+状态：已完成（2014 文档接口已覆盖 `integration/contract`）。
 
 任务：
 
