@@ -22,14 +22,14 @@
 - 部分 2014 实体补充 `*_en`
 - `subrace` 详情映射为 `traits`
 - `class/race/subrace` 若父资源不存在则返回 `404`
+- 阶段 A-F 已落地（模型、语义、映射、契约测试、CI 守卫、PR 门禁）
 
-仍需开发：
+仍需开发（下一轮）：
 
-- 其余 2014 资源模型补充 `name_en` / `desc_en`
-- `Race` 补齐 `starting_proficiencies` / `starting_proficiency_options`
-- `Choice` 结构补 `desc_en`
-- 增加统一 JSON 404 middleware
-- 增加契约回归测试（字段、语义、映射）
+- 增加契约测试覆盖到关键集成路径（REST + GraphQL）
+- 为图片等非核心资源定义单独契约（当前错误格式与主契约不一致）
+- 契约变更发布流程标准化（release note 与破坏性变更声明）
+- `2024` 资源契约化（暂缓，待后续排期）
 
 ---
 
