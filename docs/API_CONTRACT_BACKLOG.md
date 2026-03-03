@@ -4,6 +4,8 @@
 
 目标：让契约在集成层可感知，不仅是模型/控制器层。
 
+状态：进行中（已新增首批 `integration/contract` 用例）。
+
 任务：
 
 1. 新增 `src/tests/integration/contract/` 用例
