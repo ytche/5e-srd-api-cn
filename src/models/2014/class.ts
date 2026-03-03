@@ -29,6 +29,9 @@ export class SpellcastingInfo {
   @prop({ required: true, index: true, type: () => [String] })
   public desc!: string[]
 
+  @prop({ type: () => [String] })
+  public desc_en?: string[]
+
   @Field(() => String, { description: 'Name of the spellcasting ability.' })
   @prop({ required: true, index: true, type: () => String })
   public name!: string

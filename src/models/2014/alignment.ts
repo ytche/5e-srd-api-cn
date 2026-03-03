@@ -11,6 +11,9 @@ export class Alignment {
   @prop({ required: true, index: true, type: () => String })
   public desc!: string
 
+  @prop({ type: () => String })
+  public desc_en?: string
+
   @Field(() => String, {
     description: 'A shortened representation of the alignment (e.g., LG, CE).'
   })
@@ -28,6 +31,9 @@ export class Alignment {
   })
   @prop({ required: true, index: true, type: () => String })
   public name!: string
+
+  @prop({ type: () => String })
+  public name_en?: string
 
   @prop({ required: true, index: true, type: () => String })
   public url!: string

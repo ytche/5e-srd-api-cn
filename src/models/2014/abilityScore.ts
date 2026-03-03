@@ -19,6 +19,9 @@ export class AbilityScore {
   @prop({ required: true, index: true, type: () => [String] })
   public desc!: string[]
 
+  @prop({ type: () => [String] })
+  public desc_en?: string[]
+
   @Field(() => String, { description: 'The full name of the ability score (e.g., Strength).' })
   @prop({ required: true, index: true, type: () => String })
   public full_name!: string

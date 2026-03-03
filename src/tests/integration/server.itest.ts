@@ -44,6 +44,7 @@ describe('/bad-url', () => {
   it('404s', async () => {
     const res = await request(app).get('/bad-url')
     expect(res.statusCode).toEqual(404)
+    expect(res.body).toEqual({ error: 'Not found' })
   })
 })
 
@@ -59,5 +60,13 @@ describe('/api/2014', () => {
     expect(res.statusCode).toEqual(200)
     expect(res.body).toHaveProperty('ability-scores')
     expect(res.body).not.toHaveProperty('levels')
+  })
+})
+
+describe('/api/invalid-endpoint', () => {
+  it('returns JSON 404 for invalid API endpoint', async () => {
+    const res = await request(app).get('/api/invalid-endpoint')
+    expect(res.statusCode).toEqual(404)
+    expect(res.body).toEqual({ error: 'Not found' })
   })
 })

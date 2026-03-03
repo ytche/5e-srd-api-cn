@@ -25,6 +25,9 @@ export class Proficiency {
   @prop({ required: true, index: true, type: () => String })
   public name!: string
 
+  @prop({ type: () => String })
+  public name_en?: string
+
   @Field(() => [Race], { nullable: true, description: 'Races that grant this proficiency.' })
   @prop({ type: () => [APIReference] })
   public races?: APIReference[]

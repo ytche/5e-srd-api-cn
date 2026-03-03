@@ -50,11 +50,11 @@ describe('deprecated /api controller', () => {
   it('responds with 404 for invalid sub-routes', async () => {
     const request = createRequest({ path: '/invalid-endpoint' })
     const response = createResponse()
-    const sendStatusSpy = vi.spyOn(response, 'sendStatus')
 
     await deprecatedApiController(request, response, mockNext)
 
-    expect(sendStatusSpy).toHaveBeenCalledWith(404)
+    expect(response.statusCode).toBe(404)
+    expect(JSON.parse(response._getData())).toEqual({ error: 'Not found' })
     expect(mockNext).not.toHaveBeenCalled()
   })
 })

@@ -10,7 +10,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
     const colRequested = collections.find((col) => col.index === colName)
 
     if (colRequested === undefined && colName !== '') {
-      res.sendStatus(404)
+      res.status(404).json({ error: 'Not found' })
       return
     }
 

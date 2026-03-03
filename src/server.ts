@@ -17,6 +17,7 @@ import { resolvers as resolvers2024 } from './graphql/2024/resolvers'
 import { createApolloMiddleware } from './middleware/apolloServer'
 import bugsnagMiddleware from './middleware/bugsnag'
 import errorHandlerMiddleware from './middleware/errorHandler'
+import notFoundHandler from './middleware/notFound'
 import apiRoutes from './routes/api'
 
 const __filename = fileURLToPath(import.meta.url)
@@ -101,6 +102,7 @@ export default async () => {
   })
   app.get('/docs', docsController)
   app.use('/api', apiRoutes)
+  app.use(notFoundHandler)
 
   if (bugsnagMiddleware?.errorHandler) {
     app.use(bugsnagMiddleware.errorHandler)

@@ -5,6 +5,7 @@ import Proficiency from '@/models/2014/proficiency'
 import Subrace from '@/models/2014/subrace'
 import Trait from '@/models/2014/trait'
 import { ShowParamsSchema } from '@/schemas/schemas'
+import { mapSubraceForContract } from '@/util/contractMapper'
 import { ResourceList } from '@/util/data'
 
 const simpleController = new SimpleController(Subrace)
@@ -24,12 +25,7 @@ export const show = async (req: Request, res: Response, next: NextFunction) => {
     const data: any = await Subrace.findOne({ index })
     if (!data) return next()
 
-    const jsonData = data.toJSON()
-    if (jsonData.racial_traits !== undefined && jsonData.traits === undefined) {
-      jsonData.traits = jsonData.racial_traits
-      delete jsonData.racial_traits
-    }
-
+    const jsonData = mapSubraceForContract(data.toJSON())
     return res.status(200).json(jsonData)
   } catch (err) {
     next(err)

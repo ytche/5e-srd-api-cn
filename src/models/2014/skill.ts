@@ -20,6 +20,9 @@ export class Skill {
   @prop({ required: true, index: true, type: () => [String] })
   public desc!: string[]
 
+  @prop({ type: () => [String] })
+  public desc_en?: string[]
+
   @Field(() => String, { description: 'The unique identifier for this skill (e.g., athletics).' })
   @prop({ required: true, index: true, type: () => String })
   public index!: string
@@ -27,6 +30,9 @@ export class Skill {
   @Field(() => String, { description: 'The name of the skill (e.g., Athletics).' })
   @prop({ required: true, index: true, type: () => String })
   public name!: string
+
+  @prop({ type: () => String })
+  public name_en?: string
 
   // url is intentionally not decorated with @Field
   @prop({ required: true, index: true, type: () => String })

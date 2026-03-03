@@ -76,6 +76,9 @@ export class Feature {
   @prop({ required: true, index: true, type: () => [String] })
   public desc!: string[]
 
+  @prop({ type: () => [String] })
+  public desc_en?: string[]
+
   @Field(() => Feature, { nullable: true, description: 'A parent feature, if applicable.' })
   @prop({ type: () => APIReference })
   public parent?: APIReference
@@ -91,6 +94,9 @@ export class Feature {
   @Field(() => String, { description: 'Name of the feature.' })
   @prop({ required: true, index: true, type: () => String })
   public name!: string
+
+  @prop({ type: () => String })
+  public name_en?: string
 
   // Handled by FeatureResolver
   @prop({ type: () => [Object] })

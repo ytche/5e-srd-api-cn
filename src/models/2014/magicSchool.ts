@@ -13,6 +13,9 @@ export class MagicSchool {
   @prop({ type: () => String, index: true })
   public desc!: string
 
+  @prop({ type: () => String })
+  public desc_en?: string
+
   @Field(() => String, { description: 'The unique identifier for this school (e.g., evocation).' })
   @prop({ required: true, index: true, type: () => String })
   public index!: string
@@ -20,6 +23,9 @@ export class MagicSchool {
   @Field(() => String, { description: 'The name of the school (e.g., Evocation).' })
   @prop({ required: true, index: true, type: () => String })
   public name!: string
+
+  @prop({ type: () => String })
+  public name_en?: string
 
   @prop({ required: true, index: true, type: () => String })
   public url!: string

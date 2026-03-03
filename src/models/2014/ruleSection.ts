@@ -11,6 +11,9 @@ export class RuleSection {
   @prop({ required: true, index: true, type: () => String })
   public desc!: string
 
+  @prop({ type: () => String })
+  public desc_en?: string
+
   @Field(() => String, {
     description: 'The unique identifier for this rule section (e.g., ability-checks).'
   })
@@ -20,6 +23,9 @@ export class RuleSection {
   @Field(() => String, { description: 'The name of the rule section (e.g., Ability Checks).' })
   @prop({ required: true, index: true, type: () => String })
   public name!: string
+
+  @prop({ type: () => String })
+  public name_en?: string
 
   @prop({ required: true, index: true, type: () => String })
   public url!: string

@@ -53,6 +53,9 @@ export class Action {
   @prop({ required: true, index: true, type: () => String })
   public name!: string
 
+  @prop({ type: () => String })
+  public name_en?: string
+
   @Field(() => String, { description: 'Description of the action.' })
   @prop({ required: true, index: true, type: () => String })
   public desc!: string
@@ -108,6 +111,9 @@ export class Trait {
   @Field(() => [String], { description: 'A description of the trait.' })
   @prop({ required: true, index: true, type: () => [String] })
   public desc!: string[]
+
+  @prop({ type: () => [String] })
+  public desc_en?: string[]
 
   @Field(() => String, { description: 'The unique identifier for this trait (e.g., darkvision).' })
   @prop({ required: true, index: true, type: () => String })

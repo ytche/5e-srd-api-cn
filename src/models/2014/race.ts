@@ -78,6 +78,16 @@ export class Race {
   @prop({ type: () => [APIReference], required: true })
   public languages!: APIReference[]
 
+  @Field(() => [APIReference], {
+    nullable: true,
+    description: 'Starting proficiencies granted by this race.'
+  })
+  @prop({ type: () => [APIReference] })
+  public starting_proficiencies?: APIReference[]
+
+  @prop({ type: () => Choice })
+  public starting_proficiency_options?: Choice
+
   @Field(() => String, { description: 'The name of the race.' })
   @prop({ required: true, index: true, type: () => String })
   public name!: string

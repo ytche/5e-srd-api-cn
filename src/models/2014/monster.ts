@@ -50,9 +50,15 @@ export class MonsterAction {
   @prop({ required: true, index: true, type: () => String })
   public name!: string
 
+  @prop({ type: () => String })
+  public name_en?: string
+
   @Field(() => String, { description: 'The description of the action.' })
   @prop({ required: true, index: true, type: () => String })
   public desc!: string
+
+  @prop({ type: () => String })
+  public desc_en?: string
 
   @Field(() => Int, { nullable: true, description: 'The attack bonus for the action.' })
   @prop({ index: true, type: () => Number })

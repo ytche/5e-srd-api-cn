@@ -132,6 +132,9 @@ export class Choice {
   @prop({ type: () => String, required: true })
   public desc!: string
 
+  @prop({ type: () => String })
+  public desc_en?: string
+
   @prop({ type: () => Number, required: true })
   public choose!: number
 

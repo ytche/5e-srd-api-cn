@@ -14,6 +14,9 @@ export class Rarity {
   })
   @prop({ required: true, index: true, type: () => String })
   public name!: string
+
+  @prop({ type: () => String })
+  public name_en?: string
 }
 
 @ObjectType({ description: 'An item imbued with magical properties.' })
@@ -24,6 +27,9 @@ export class MagicItem {
   })
   @prop({ type: () => [String], index: true })
   public desc!: string[]
+
+  @prop({ type: () => [String] })
+  public desc_en?: string[]
 
   @Field(() => EquipmentCategory, {
     description: 'The category of equipment this magic item belongs to.'

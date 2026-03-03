@@ -13,6 +13,9 @@ export class WeaponProperty {
   @prop({ required: true, index: true, type: () => [String] })
   public desc!: string[]
 
+  @prop({ type: () => [String] })
+  public desc_en?: string[]
+
   @Field(() => String, {
     description: 'The unique identifier for this property (e.g., versatile).'
   })
@@ -22,6 +25,9 @@ export class WeaponProperty {
   @Field(() => String, { description: 'The name of the property (e.g., Versatile).' })
   @prop({ required: true, index: true, type: () => String })
   public name!: string
+
+  @prop({ type: () => String })
+  public name_en?: string
 
   @prop({ required: true, index: true, type: () => String })
   public url!: string

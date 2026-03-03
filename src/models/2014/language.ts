@@ -19,6 +19,9 @@ export class Language {
   @prop({ required: true, index: true, type: () => String })
   public name!: string
 
+  @prop({ type: () => String })
+  public name_en?: string
+
   @Field(() => String, {
     nullable: true,
     description: 'The script used to write the language (e.g., Common, Elvish).'

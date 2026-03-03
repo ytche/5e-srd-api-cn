@@ -15,9 +15,15 @@ export class DamageType {
   @prop({ required: true, index: true, type: () => String })
   public name!: string
 
+  @prop({ type: () => String })
+  public name_en?: string
+
   @Field(() => [String], { description: 'A description of the damage type.' })
   @prop({ required: true, type: () => [String] })
   public desc!: string[]
+
+  @prop({ type: () => [String] })
+  public desc_en?: string[]
 
   @prop({ required: true, index: true, type: () => String })
   public url!: string

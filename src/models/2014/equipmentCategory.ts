@@ -22,6 +22,9 @@ export class EquipmentCategory {
   @prop({ required: true, index: true, type: () => String })
   public name!: string
 
+  @prop({ type: () => String })
+  public name_en?: string
+
   @prop({ required: true, index: true, type: () => String })
   public url!: string
 
