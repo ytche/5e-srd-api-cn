@@ -21,6 +21,7 @@
     "gen-postman": "npm run bundle-swagger && openapi2postmanv2 -s dist/openapi.yml -o dist/collection.postman.json -c openapi-to-postman.json",
     "test": "npm run test:unit && npm run test:integration:local",
     "test:unit": "vitest run",
+    "test:contract": "vitest run src/tests/contract",
     "test:integration": "vitest run --config ./vitest.config.integration.ts",
     "test:integration:local": "docker compose pull && docker compose build && docker compose run --use-aliases api npm run test:integration"
   },
