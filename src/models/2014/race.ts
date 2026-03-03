@@ -44,13 +44,28 @@ export class Race {
   @prop({ required: true, index: true, type: () => String })
   public age!: string
 
+  @Field(() => String, { nullable: true, description: 'English age description for the race' })
+  @prop({ type: () => String })
+  public age_en?: string
+
   @Field(() => String, { description: 'Typical alignment tendencies for the race' })
   @prop({ required: true, index: true, type: () => String })
   public alignment!: string
 
+  @Field(() => String, { nullable: true, description: 'English alignment tendencies for the race' })
+  @prop({ type: () => String })
+  public alignment_en?: string
+
   @Field(() => String, { description: 'Description of languages typically spoken by the race' })
   @prop({ required: true, index: true, type: () => String })
   public language_desc!: string
+
+  @Field(() => String, {
+    nullable: true,
+    description: 'English language description for the race'
+  })
+  @prop({ type: () => String })
+  public language_desc_en?: string
 
   // Handled by RaceResolver
   @prop({ type: () => Choice })
@@ -67,13 +82,25 @@ export class Race {
   @prop({ required: true, index: true, type: () => String })
   public name!: string
 
+  @Field(() => String, { nullable: true, description: 'English name of the race.' })
+  @prop({ type: () => String })
+  public name_en?: string
+
   @Field(() => String, { description: 'Size category (e.g., Medium, Small)' })
   @prop({ required: true, index: true, type: () => String })
   public size!: string
 
+  @Field(() => String, { nullable: true, description: 'English size category.' })
+  @prop({ type: () => String })
+  public size_en?: string
+
   @Field(() => String, { description: "Description of the race's size" })
   @prop({ required: true, index: true, type: () => String })
   public size_description!: string
+
+  @Field(() => String, { nullable: true, description: "English description of the race's size" })
+  @prop({ type: () => String })
+  public size_description_en?: string
 
   @Field(() => Int, { description: 'Base walking speed in feet' })
   @prop({ required: true, index: true, type: () => Number })

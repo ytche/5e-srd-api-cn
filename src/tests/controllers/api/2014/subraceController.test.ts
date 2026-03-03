@@ -77,6 +77,8 @@ describe('SubraceController', () => {
       expect(responseData.name).toBe(subraceData.name)
       // Add more checks as needed
       expect(responseData.race.index).toBe(subraceData.race.index)
+      expect(responseData.traits).toEqual(subraceData.racial_traits)
+      expect(responseData.racial_traits).toBeUndefined()
       expect(mockNext).not.toHaveBeenCalled()
     })
 
@@ -100,6 +102,7 @@ describe('SubraceController', () => {
 
     it('returns a list of traits for the subrace', async () => {
       // Arrange
+      await SubraceModel.insertMany([subraceFactory.build({ index: subraceIndex, url: subraceUrl })])
       const subraceRef = { index: subraceIndex, name: 'Rock Gnome', url: subraceUrl }
       const traitsData = traitFactory.buildList(2, { subraces: [subraceRef] })
       await TraitModel.insertMany(traitsData)
@@ -132,6 +135,7 @@ describe('SubraceController', () => {
 
     it('returns a list of proficiencies for the subrace', async () => {
       // Arrange
+      await SubraceModel.insertMany([subraceFactory.build({ index: subraceIndex, url: subraceUrl })])
       const subraceRef = { index: subraceIndex, name: 'Hill Dwarf', url: subraceUrl }
       // The Proficiency model links via `races` which includes subraces conceptually
       const proficienciesData = proficiencyFactory.buildList(3, { races: [subraceRef] })

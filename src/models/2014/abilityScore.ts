@@ -31,6 +31,10 @@ export class AbilityScore {
   @prop({ required: true, index: true, type: () => String })
   public name!: string
 
+  @Field(() => String, { nullable: true, description: 'The English name of the ability score.' })
+  @prop({ type: () => String })
+  public name_en?: string
+
   @Field(() => [Skill], { description: 'Skills associated with this ability score.' })
   @prop({ type: () => [APIReference] })
   public skills!: APIReference[]

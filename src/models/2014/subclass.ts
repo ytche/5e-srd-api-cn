@@ -17,6 +17,9 @@ export class Prerequisite {
   @prop({ required: true, type: () => String })
   public name!: string
 
+  @prop({ type: () => String })
+  public name_en?: string
+
   @prop({ required: true, type: () => String })
   public type!: string
 
@@ -48,6 +51,10 @@ export class Subclass {
   @prop({ required: true, index: true, type: () => [String] })
   public desc!: string[]
 
+  @Field(() => [String], { nullable: true, description: 'English description of the subclass' })
+  @prop({ type: () => [String] })
+  public desc_en?: string[]
+
   @Field(() => String, { description: 'Unique identifier for the subclass' })
   @prop({ required: true, index: true, type: () => String })
   public index!: string
@@ -55,6 +62,10 @@ export class Subclass {
   @Field(() => String, { description: 'Name of the subclass' })
   @prop({ required: true, index: true, type: () => String })
   public name!: string
+
+  @Field(() => String, { nullable: true, description: 'English name of the subclass' })
+  @prop({ type: () => String })
+  public name_en?: string
 
   @Field(() => [SubclassSpell], {
     nullable: true,

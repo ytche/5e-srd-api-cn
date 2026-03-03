@@ -91,6 +91,10 @@ export class Spell {
   @prop({ required: true, index: true, type: () => [String] })
   public desc!: string[]
 
+  @Field(() => [String], { nullable: true, description: "English description of the spell's effects" })
+  @prop({ type: () => [String] })
+  public desc_en?: string[]
+
   @Field(() => String, { description: 'Duration of the spell' })
   @prop({ required: true, index: true, type: () => String })
   public duration!: string
@@ -121,6 +125,10 @@ export class Spell {
   @Field(() => String, { description: 'Name of the spell' })
   @prop({ required: true, index: true, type: () => String })
   public name!: string
+
+  @Field(() => String, { nullable: true, description: 'English name of the spell' })
+  @prop({ type: () => String })
+  public name_en?: string
 
   @Field(() => String, { description: 'Range of the spell' })
   @prop({ required: true, index: true, type: () => String })

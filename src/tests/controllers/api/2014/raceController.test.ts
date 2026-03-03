@@ -102,6 +102,7 @@ describe('RaceController', () => {
 
     it('returns a list of subraces for the race', async () => {
       // Arrange
+      await RaceModel.insertMany([raceFactory.build({ index: raceIndex, url: raceUrl })])
       const raceRef = { index: raceIndex, name: 'Dwarf', url: raceUrl }
       const subracesData = subraceFactory.buildList(2, { race: raceRef })
       await SubraceModel.insertMany(subracesData)
@@ -134,6 +135,7 @@ describe('RaceController', () => {
 
     it('returns a list of traits for the race', async () => {
       // Arrange
+      await RaceModel.insertMany([raceFactory.build({ index: raceIndex, url: raceUrl })])
       const raceRef = { index: raceIndex, name: 'Elf', url: raceUrl }
       const traitsData = traitFactory.buildList(3, { races: [raceRef] })
       await TraitModel.insertMany(traitsData)
@@ -166,6 +168,7 @@ describe('RaceController', () => {
 
     it('returns a list of proficiencies for the race', async () => {
       // Arrange
+      await RaceModel.insertMany([raceFactory.build({ index: raceIndex, url: raceUrl })])
       const raceRef = { index: raceIndex, name: 'Halfling', url: raceUrl }
       const proficienciesData = proficiencyFactory.buildList(4, { races: [raceRef] })
       await ProficiencyModel.insertMany(proficienciesData)

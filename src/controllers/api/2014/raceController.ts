@@ -25,6 +25,10 @@ export const showSubracesForRace = async (req: Request, res: Response, next: Nex
         .json({ error: 'Invalid path parameters', details: validatedParams.error.issues })
     }
     const { index } = validatedParams.data
+    const raceExists = await Race.findOne({ index }).select({ index: 1, _id: 0 }).lean()
+    if (!raceExists) {
+      return res.status(404).json({ error: 'Not found' })
+    }
 
     const urlString = '/api/2014/races/' + index
 
@@ -50,6 +54,10 @@ export const showTraitsForRace = async (req: Request, res: Response, next: NextF
         .json({ error: 'Invalid path parameters', details: validatedParams.error.issues })
     }
     const { index } = validatedParams.data
+    const raceExists = await Race.findOne({ index }).select({ index: 1, _id: 0 }).lean()
+    if (!raceExists) {
+      return res.status(404).json({ error: 'Not found' })
+    }
 
     const urlString = '/api/2014/races/' + index
 
@@ -75,6 +83,10 @@ export const showProficienciesForRace = async (req: Request, res: Response, next
         .json({ error: 'Invalid path parameters', details: validatedParams.error.issues })
     }
     const { index } = validatedParams.data
+    const raceExists = await Race.findOne({ index }).select({ index: 1, _id: 0 }).lean()
+    if (!raceExists) {
+      return res.status(404).json({ error: 'Not found' })
+    }
 
     const urlString = '/api/2014/races/' + index
 

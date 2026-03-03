@@ -95,10 +95,21 @@ export const showMulticlassingForClass = async (
   next: NextFunction
 ) => {
   try {
-    const urlString = '/api/2014/classes/' + req.params.index
+    const validatedParams = ShowParamsSchema.safeParse(req.params)
+    if (!validatedParams.success) {
+      return res
+        .status(400)
+        .json({ error: 'Invalid path parameters', details: validatedParams.error.issues })
+    }
+    const { index } = validatedParams.data
+
+    const urlString = '/api/2014/classes/' + index
 
     const data = await Class.findOne({ url: urlString })
-    return res.status(200).json(data?.multi_classing)
+    if (!data || !data.multi_classing) {
+      return res.status(404).json({ error: 'Not found' })
+    }
+    return res.status(200).json(data.multi_classing)
   } catch (err) {
     next(err)
   }
@@ -136,10 +147,22 @@ export const showStartingEquipmentForClass = async (
   next: NextFunction
 ) => {
   try {
-    const data = await Class.findOne({ index: req.params.index })
+    const validatedParams = ShowParamsSchema.safeParse(req.params)
+    if (!validatedParams.success) {
+      return res
+        .status(400)
+        .json({ error: 'Invalid path parameters', details: validatedParams.error.issues })
+    }
+    const { index } = validatedParams.data
+
+    const data = await Class.findOne({ index })
+    if (!data) {
+      return res.status(404).json({ error: 'Not found' })
+    }
+
     return res.status(200).json({
-      starting_equipment: data?.starting_equipment,
-      starting_equipment_options: data?.starting_equipment_options
+      starting_equipment: data.starting_equipment,
+      starting_equipment_options: data.starting_equipment_options
     })
   } catch (err) {
     next(err)

@@ -32,6 +32,10 @@ export class SpellcastingInfo {
   @Field(() => String, { description: 'Name of the spellcasting ability.' })
   @prop({ required: true, index: true, type: () => String })
   public name!: string
+
+  @Field(() => String, { nullable: true, description: 'English name of the spellcasting ability.' })
+  @prop({ type: () => String })
+  public name_en?: string
 }
 
 @ObjectType({ description: 'Spellcasting details for a class' })
@@ -112,6 +116,10 @@ export class Class {
   @Field(() => String, { description: 'Name of the class' })
   @prop({ required: true, index: true, type: () => String })
   public name!: string
+
+  @Field(() => String, { nullable: true, description: 'English name of the class' })
+  @prop({ type: () => String })
+  public name_en?: string
 
   @Field(() => [Proficiency], {
     nullable: true,

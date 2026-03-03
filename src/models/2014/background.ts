@@ -26,9 +26,20 @@ class BackgroundFeature {
   @prop({ required: true, index: true, type: () => String })
   public name!: string
 
+  @Field(() => String, { nullable: true, description: 'The English name of the background feature.' })
+  @prop({ type: () => String })
+  public name_en?: string
+
   @Field(() => [String], { description: 'The description of the background feature.' })
   @prop({ required: true, index: true, type: () => [String] })
   public desc!: string[]
+
+  @Field(() => [String], {
+    nullable: true,
+    description: 'The English description of the background feature.'
+  })
+  @prop({ type: () => [String] })
+  public desc_en?: string[]
 }
 
 @ObjectType({
@@ -45,6 +56,10 @@ export class Background {
   @Field(() => String, { description: 'The name of the background (e.g., Acolyte).' })
   @prop({ required: true, index: true, type: () => String })
   public name!: string
+
+  @Field(() => String, { nullable: true, description: 'The English name of the background.' })
+  @prop({ type: () => String })
+  public name_en?: string
 
   @Field(() => [Proficiency], { description: 'Proficiencies granted by this background at start.' })
   @prop({ type: () => [APIReference] })

@@ -11,8 +11,30 @@ const simpleController = new SimpleController(Subrace)
 
 export const index = async (req: Request, res: Response, next: NextFunction) =>
   simpleController.index(req, res, next)
-export const show = async (req: Request, res: Response, next: NextFunction) =>
-  simpleController.show(req, res, next)
+export const show = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const validatedParams = ShowParamsSchema.safeParse(req.params)
+    if (!validatedParams.success) {
+      return res
+        .status(400)
+        .json({ error: 'Invalid path parameters', details: validatedParams.error.issues })
+    }
+    const { index } = validatedParams.data
+
+    const data: any = await Subrace.findOne({ index })
+    if (!data) return next()
+
+    const jsonData = data.toJSON()
+    if (jsonData.racial_traits !== undefined && jsonData.traits === undefined) {
+      jsonData.traits = jsonData.racial_traits
+      delete jsonData.racial_traits
+    }
+
+    return res.status(200).json(jsonData)
+  } catch (err) {
+    next(err)
+  }
+}
 
 export const showTraitsForSubrace = async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -24,6 +46,10 @@ export const showTraitsForSubrace = async (req: Request, res: Response, next: Ne
         .json({ error: 'Invalid path parameters', details: validatedParams.error.issues })
     }
     const { index } = validatedParams.data
+    const subraceExists = await Subrace.findOne({ index }).select({ index: 1, _id: 0 }).lean()
+    if (!subraceExists) {
+      return res.status(404).json({ error: 'Not found' })
+    }
 
     const urlString = '/api/2014/subraces/' + index
     const data = await Trait.find({ 'subraces.url': urlString }).select({
@@ -53,6 +79,10 @@ export const showProficienciesForSubrace = async (
         .json({ error: 'Invalid path parameters', details: validatedParams.error.issues })
     }
     const { index } = validatedParams.data
+    const subraceExists = await Subrace.findOne({ index }).select({ index: 1, _id: 0 }).lean()
+    if (!subraceExists) {
+      return res.status(404).json({ error: 'Not found' })
+    }
 
     const urlString = '/api/2014/subraces/' + index
 

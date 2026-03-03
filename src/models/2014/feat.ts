@@ -34,6 +34,10 @@ export class Feat {
   @prop({ required: true, index: true, type: () => String })
   public name!: string
 
+  @Field(() => String, { nullable: true, description: 'The English name of the feat.' })
+  @prop({ type: () => String })
+  public name_en?: string
+
   @Field(() => [Prerequisite], { description: 'Prerequisites that must be met to take the feat.' })
   @prop({ type: () => [Prerequisite] })
   public prerequisites!: Prerequisite[]
@@ -41,6 +45,10 @@ export class Feat {
   @Field(() => [String], { description: 'A description of the benefits conferred by the feat.' })
   @prop({ required: true, index: true, type: () => [String] })
   public desc!: string[]
+
+  @Field(() => [String], { nullable: true, description: 'English description of the feat.' })
+  @prop({ type: () => [String] })
+  public desc_en?: string[]
 
   @prop({ required: true, index: true, type: () => String })
   public url!: string

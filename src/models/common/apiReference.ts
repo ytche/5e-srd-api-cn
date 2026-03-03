@@ -12,6 +12,10 @@ export class APIReference {
   @prop({ required: true, type: () => String })
   public name!: string
 
+  @Field(() => String, { nullable: true, description: 'The English name of the API resource' })
+  @prop({ type: () => String })
+  public name_en?: string
+
   @Field(() => String, { description: 'The URL of the API resource' })
   @prop({ required: true, type: () => String })
   public url!: string
