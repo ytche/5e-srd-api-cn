@@ -108,6 +108,44 @@ AIAgent 目标是将 `API_BACKEND_DEV_PLAN.md` 中的阶段任务自动化执行
 
 ---
 
+## Step 5：阶段 E 自动实现（CI 契约守卫）
+
+动作：
+
+1. 增加 `test:contract` 命令
+2. CI 新增独立 `contract` job
+3. 验证契约测试在本地与 CI 指令一致
+
+产出：
+
+- Commit 5（中文）
+- CI 守卫说明
+
+质量门禁：
+
+- `npm run test:contract` 通过
+
+---
+
+## Step 6：阶段 F 自动实现（PR/发布门禁）
+
+动作：
+
+1. 增加契约门禁文档（PR + Release checklist）
+2. 更新 PR 模板，强制填写契约验证项
+3. 将门禁文档纳入契约文档体系
+
+产出：
+
+- Commit 6（中文）
+- 契约门禁执行规范
+
+质量门禁：
+
+- 模板和文档可直接用于团队流程
+
+---
+
 ## 4. Agent 任务模板
 
 每次执行采用以下模板：
