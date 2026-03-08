@@ -119,6 +119,10 @@ In order to run integration tests locally you can use the command: `npm run test
 
 Public facing API documentation lives [here.](https://www.dnd5eapi.co/docs)
 
+**中文 API 文档**：项目内提供基于 OpenAPI 规范整理的中文接口说明：[docs/API_ZH.md](docs/API_ZH.md)
+
+**前后端 API 契约**：与 character-builder 对接时共同遵循的数据格式：[docs/API_CONTRACT.md](docs/API_CONTRACT.md)
+
 The [docs repository](https://github.com/5e-bits/docs) contains the source for the public facing API documentation. It uses
 [Docusaurus](https://docusaurus.io/) to generate the site from a bundled OpenAPI spec.
 
