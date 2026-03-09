@@ -9,7 +9,11 @@ describe('contractMapper', () => {
       racial_traits: [{ index: 'keen-senses' }]
     }
 
-    const mapped = mapSubraceForContract(input)
+    const mapped = mapSubraceForContract(input) as unknown as {
+      index: string
+      traits: { index: string }[]
+      racial_traits?: undefined
+    }
     expect(mapped.traits).toEqual([{ index: 'keen-senses' }])
     expect((mapped as any).racial_traits).toBeUndefined()
   })

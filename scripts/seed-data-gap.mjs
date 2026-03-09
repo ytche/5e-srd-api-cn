@@ -111,6 +111,32 @@ async function main() {
     }
   }
 
+  // 补全 race 的 subraces 数组：根据 2014-subraces 中每条亚种的 race 归属，汇总为各 race 的 subraces 列表（格式见 RACES_SUBRACES_GAP.md）
+  const racesCol = db.collection('2014-races')
+  const allSubraces = await subracesCol
+    .find({}, { projection: { index: 1, name: 1, name_en: 1, url: 1, 'race.index': 1 } })
+    .toArray()
+  const subracesByRaceIndex = {}
+  for (const s of allSubraces) {
+    const raceIndex = s.race?.index
+    if (!raceIndex) continue
+    if (!subracesByRaceIndex[raceIndex]) subracesByRaceIndex[raceIndex] = []
+    subracesByRaceIndex[raceIndex].push({
+      index: s.index,
+      name: s.name,
+      name_en: s.name_en || undefined,
+      url: s.url
+    })
+  }
+  for (const [raceIndex, refs] of Object.entries(subracesByRaceIndex)) {
+    refs.sort((a, b) => a.index.localeCompare(b.index))
+    const r = await racesCol.updateOne(
+      { index: raceIndex },
+      { $set: { subraces: refs, updated_at: now } }
+    )
+    if (r.modifiedCount) console.log('race subraces updated:', raceIndex, '->', refs.length, 'subraces')
+  }
+
   // Subclasses: 需补充的 SRD index 与 中文/英文 名
   const subclassesCol = db.collection('2014-subclasses')
   const subclassesToAdd = [
@@ -284,6 +310,34 @@ async function main() {
       { $set: { name: u.name, name_en: u.name_en, updated_at: now } }
     )
     if (r.modifiedCount) console.log('subclass updated:', u.index, '->', u.name)
+  }
+
+  // 根据 2014-subclasses 反推各 class 的 subclasses 数组（DATA_GAP_PLAYERS_HANDBOOK 3.1 / 3.2）
+  const classesCol = db.collection('2014-classes')
+  const allSubclassesForClasses = await subclassesCol
+    .find({}, { projection: { index: 1, name: 1, name_en: 1, url: 1, 'class.index': 1 } })
+    .toArray()
+  const subclassesByClassIndex = {}
+  for (const s of allSubclassesForClasses) {
+    const classIndex = s.class?.index
+    if (!classIndex) continue
+    if (!subclassesByClassIndex[classIndex]) subclassesByClassIndex[classIndex] = []
+    subclassesByClassIndex[classIndex].push({
+      index: s.index,
+      name: s.name,
+      name_en: s.name_en || undefined,
+      url: s.url
+    })
+  }
+  for (const [classIndex, refs] of Object.entries(subclassesByClassIndex)) {
+    refs.sort((a, b) => a.index.localeCompare(b.index))
+    const r = await classesCol.updateOne(
+      { index: classIndex },
+      { $set: { subclasses: refs, updated_at: now } }
+    )
+    if (r.modifiedCount) {
+      console.log('class subclasses updated:', classIndex, '->', refs.length, 'subclasses')
+    }
   }
 
   await mongoose.disconnect()
