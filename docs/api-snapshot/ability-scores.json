@@ -1,0 +1,35 @@
+{
+  "count": 6,
+  "results": [
+    {
+      "index": "cha",
+      "name": "魅力 (CHA)",
+      "url": "/api/2014/ability-scores/cha"
+    },
+    {
+      "index": "con",
+      "name": "体质 (CON)",
+      "url": "/api/2014/ability-scores/con"
+    },
+    {
+      "index": "dex",
+      "name": "敏捷 (DEX)",
+      "url": "/api/2014/ability-scores/dex"
+    },
+    {
+      "index": "int",
+      "name": "智力 (INT)",
+      "url": "/api/2014/ability-scores/int"
+    },
+    {
+      "index": "str",
+      "name": "力量 (STR)",
+      "url": "/api/2014/ability-scores/str"
+    },
+    {
+      "index": "wis",
+      "name": "感知 (WIS)",
+      "url": "/api/2014/ability-scores/wis"
+    }
+  ]
+}

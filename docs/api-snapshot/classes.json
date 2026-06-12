@@ -1,0 +1,65 @@
+{
+  "count": 12,
+  "results": [
+    {
+      "name": "野蛮人",
+      "index": "barbarian",
+      "url": "/api/2014/classes/barbarian"
+    },
+    {
+      "name": "吟游诗人",
+      "index": "bard",
+      "url": "/api/2014/classes/bard"
+    },
+    {
+      "name": "牧师",
+      "index": "cleric",
+      "url": "/api/2014/classes/cleric"
+    },
+    {
+      "name": "德鲁伊",
+      "index": "druid",
+      "url": "/api/2014/classes/druid"
+    },
+    {
+      "name": "战士",
+      "index": "fighter",
+      "url": "/api/2014/classes/fighter"
+    },
+    {
+      "name": "武僧",
+      "index": "monk",
+      "url": "/api/2014/classes/monk"
+    },
+    {
+      "name": "圣武士",
+      "index": "paladin",
+      "url": "/api/2014/classes/paladin"
+    },
+    {
+      "name": "游侠",
+      "index": "ranger",
+      "url": "/api/2014/classes/ranger"
+    },
+    {
+      "name": "游荡者",
+      "index": "rogue",
+      "url": "/api/2014/classes/rogue"
+    },
+    {
+      "name": "术士",
+      "index": "sorcerer",
+      "url": "/api/2014/classes/sorcerer"
+    },
+    {
+      "name": "邪术师",
+      "index": "warlock",
+      "url": "/api/2014/classes/warlock"
+    },
+    {
+      "name": "法师",
+      "index": "wizard",
+      "url": "/api/2014/classes/wizard"
+    }
+  ]
+}

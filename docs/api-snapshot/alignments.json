@@ -1,0 +1,50 @@
+{
+  "count": 9,
+  "results": [
+    {
+      "index": "chaotic-evil",
+      "name": "混乱邪恶 (CE)",
+      "url": "/api/2014/alignments/chaotic-evil"
+    },
+    {
+      "index": "chaotic-good",
+      "name": "混乱善良 (CG)",
+      "url": "/api/2014/alignments/chaotic-good"
+    },
+    {
+      "index": "chaotic-neutral",
+      "name": "混乱中立 (CN)",
+      "url": "/api/2014/alignments/chaotic-neutral"
+    },
+    {
+      "index": "lawful-evil",
+      "name": "守序邪恶 (LE)",
+      "url": "/api/2014/alignments/lawful-evil"
+    },
+    {
+      "index": "lawful-good",
+      "name": "守序善良 (LG)",
+      "url": "/api/2014/alignments/lawful-good"
+    },
+    {
+      "index": "lawful-neutral",
+      "name": "守序中立 (LN)",
+      "url": "/api/2014/alignments/lawful-neutral"
+    },
+    {
+      "index": "neutral",
+      "name": "绝对中立 (N)",
+      "url": "/api/2014/alignments/neutral"
+    },
+    {
+      "index": "neutral-evil",
+      "name": "中立邪恶 (NE)",
+      "url": "/api/2014/alignments/neutral-evil"
+    },
+    {
+      "index": "neutral-good",
+      "name": "中立善良 (NG)",
+      "url": "/api/2014/alignments/neutral-good"
+    }
+  ]
+}
