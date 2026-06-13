@@ -67,18 +67,6 @@ jobs:
   integration:
     name: Run Integration tests
     runs-on: ubuntu-latest
-    services:
-      mongodb:
-        image: mongo:8.0
-        ports:
-          - 27017:27017
-        options: >-
-          --health-cmd "mongosh --eval 'db.runCommand({ ping: 1 })'"
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-    env:
-      TEST_MONGODB_URI_BASE: mongodb://127.0.0.1:27017/
     steps:
       - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # @v6.0.0
       - run: npm run test:integration:local
