@@ -4,6 +4,8 @@
 [![Discord](https://img.shields.io/discord/656547667601653787?style=flat&logo=discord&logoColor=white)](https://discord.gg/TQuYTv7)
 ![Uptime](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2F5e-bits%2Fdnd-uptime%2Fmain%2Fapi%2Fwebsite%2Fresponse-time.json)
 ![Uptime](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2F5e-bits%2Fdnd-uptime%2Fmain%2Fapi%2Fwebsite%2Fuptime.json)
+[![996.icu](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu)
+[![LICENSE](https://img.shields.io/badge/license-Anti%20996-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
 
 REST API to access [D&amp;D 5th Edition SRD API](https://www.dnd5eapi.co/)
 
