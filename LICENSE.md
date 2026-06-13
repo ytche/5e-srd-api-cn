@@ -1,4 +1,5 @@
 Copyright (c) 2018-2020 Adrian Padua, Christopher Ward
+
 Copyright (c) 2026 ytche
 
 "Anti 996" License Version 1.0 (Draft)
