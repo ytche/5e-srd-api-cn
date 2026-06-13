@@ -23,7 +23,7 @@ export const show = async (req: Request, res: Response, next: NextFunction) => {
     const { index } = validatedParams.data
 
     const data: any = await Subrace.findOne({ index })
-    if (!data) return next()
+    if (data === null) return next()
 
     const jsonData = mapSubraceForContract(data.toJSON())
     return res.status(200).json(jsonData)

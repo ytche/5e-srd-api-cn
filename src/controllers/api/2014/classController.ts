@@ -106,7 +106,7 @@ export const showMulticlassingForClass = async (
     const urlString = '/api/2014/classes/' + index
 
     const data = await Class.findOne({ url: urlString })
-    if (!data || !data.multi_classing) {
+    if (data === null || data.multi_classing === undefined) {
       return res.status(404).json({ error: 'Not found' })
     }
     return res.status(200).json(data.multi_classing)

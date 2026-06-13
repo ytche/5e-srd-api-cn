@@ -86,7 +86,7 @@ describe('API 2014 contract coverage', () => {
         expectListShape(listRes.body)
 
         const first = listRes.body.results[0]
-        if (!first) return
+        if (first === undefined) return
 
         expect(first).toEqual(
           expect.objectContaining({

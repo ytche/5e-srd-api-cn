@@ -12,6 +12,16 @@ export default tseslint.config(
     ignores: ['**/coverage/**', '**/dist/**', '**/node_modules/**']
   },
   eslint.configs.recommended,
+  // Plain Node.js scripts (.mjs) - no TypeScript parser
+  {
+    name: 'node-scripts',
+    files: ['**/*.mjs'],
+    languageOptions: {
+      globals: {
+        ...globals.node
+      }
+    }
+  },
   // Main TypeScript and JS linting configuration
   {
     name: 'typescript-and-imports-x',

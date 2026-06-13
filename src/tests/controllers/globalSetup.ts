@@ -3,7 +3,6 @@ import { MongoMemoryServer } from 'mongodb-memory-server'
 // Define types for global variables
 // Use declare global {} for augmenting the global scope safely
 declare global {
-  // eslint-disable-next-line no-var
   var __MONGOD__: MongoMemoryServer | undefined
 }
 

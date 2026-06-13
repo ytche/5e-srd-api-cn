@@ -60,7 +60,7 @@ function extractEquipment() {
     if (!fs.existsSync(filePath)) continue
     const html = fs.readFileSync(filePath, 'utf8')
     const list = []
-    const re = />([\u4e00-\u9fa5·]+)<\/span>\s*<span[^>]*lang=EN-US[^>]*>\s*([A-Za-z][A-Za-z'\s\-]+?)<\/span>/g
+    const re = />([\u4e00-\u9fa5·]+)<\/span>\s*<span[^>]*lang=EN-US[^>]*>\s*([A-Za-z][A-Za-z'\s-]+?)<\/span>/g
     let m
     const seen = new Set()
     while ((m = re.exec(html)) !== null) {
