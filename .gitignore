@@ -58,3 +58,6 @@ backup-*/
 
 # macOS
 .DS_Store
+
+# CHM extracted data (large, not tracked)
+5e_r_chm_extracted/
