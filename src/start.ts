@@ -27,8 +27,8 @@ const start = async () => {
   const app = await createApp()
 
   console.log('Starting server...')
-  const port = process.env.PORT ?? 3000
-  app.listen(port, () => {
+  const port = Number(process.env.PORT ?? 3000)
+  app.listen(port, '0.0.0.0', () => {
     console.log(`Listening on port ${port}! 🚀`)
   })
 }
