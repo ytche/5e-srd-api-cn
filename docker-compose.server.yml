@@ -1,0 +1,29 @@
+# 服务器部署专用 Docker Compose
+# 不需要在服务器上 clone 源码，直接通过 git 构建镜像
+# 使用方法：
+#   docker compose -f docker-compose.server.yml up -d --build
+
+services:
+  db:
+    build:
+      context: https://github.com/ytche/5e-database.git#main
+    ports:
+      - '27017:27017'
+
+  cache:
+    image: redis:6.2.5
+    ports:
+      - '6379:6379'
+
+  api:
+    build:
+      context: https://github.com/ytche/5e-srd-api-cn.git#main
+    environment:
+      MONGODB_URI: mongodb://db/5e-database
+      REDIS_URL: redis://cache:6379
+      PORT: 3000
+    ports:
+      - '3000:3000'
+    depends_on:
+      - db
+      - cache
